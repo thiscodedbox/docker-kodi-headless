@@ -1,4 +1,4 @@
-#### ** WIP - NOT FUNCTIONAL YET **
+#### ** WIP - Not Complete but should be workable**
 
 A headless install of kodi in a docker container, most useful for a mysql setup of kodi to allow library updates to be sent without the need for a player system to be permanently on.
 
@@ -12,6 +12,23 @@ git clone https://github.com/thiscodedbox/docker-kodi-headless.git
 ```
 
 Modify the variables in the bash script, only tested with Leia
+
+Put your SQL settings into advancedsettings.xml
+Grab your sources.xml from your machine you built your library with
+if they're password'd shares (SMB for example) make a passwords.xml in the same folder in this format:
+
+```
+<passwords>
+    <path>
+        <from pathversion="1">smb://BigBOX/video/Movies/</from>
+        <to pathversion="1">smb://user:pass@BigBOX/video/Movies/</to>
+    </path>
+    <path>
+        <from pathversion="1">smb://BigBOX/video/TV Shows/</from>
+        <to pathversion="1">smb://user:pass@BigBOX/video/TV Shows/</to>
+    </path>
+</passwords>
+```
 
 #### Tags
 + **Helix**
