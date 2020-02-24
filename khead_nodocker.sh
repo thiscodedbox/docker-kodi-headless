@@ -80,7 +80,7 @@ DEBIAN_FRONTEND="noninteractive"
 # CLONE
 cd ~
 
-git clone https://github.com/linuxserver/docker-kodi-headless.git
+git clone https://github.com/thiscodedbox/docker-kodi-headless.git
 
 # fetch source and apply any required patches
 
