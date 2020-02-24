@@ -1,3 +1,5 @@
+#### ** WIP - NOT FUNCTIONAL YET **
+
 A headless install of kodi in a docker container, most useful for a mysql setup of kodi to allow library updates to be sent without the need for a player system to be permanently on.
 
 Modified to be a script to run outside of docker for an LXC container (or a VM or bare metal)
