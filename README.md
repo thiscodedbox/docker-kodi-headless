@@ -53,6 +53,53 @@ If you intend to use this kodi instance to perform library tasks other than mere
 Rar integration with the Leia branch is now handled by an addon,
 it is compiled with this build, but you will need to enable it, if required, in the settings section of the webui.
 
+## Autostart Kodi
+
+Per a comment I googled from  [RigacciOrg](https://github.com/RigacciOrg):
+
+Hi,
+As far as I can understand, Debian Jessie and Debian Stretch (and the derivated Raspbian ones) use the new init system systemd, not the old one sysvInit. So the use of the start/stop script /etc/init.d/kodi and relative /etc/default/kodi configuration file, should be discouraged.
+We should instead create a systemd unit file. I ended with this functional solution, running on 2017-11-29-raspbian-stretch-lite. I did not install the xerver.xorg system, the kodi-standalone program is run by the kodi user, which I created.
+This is the /etc/systemd/system/kodi.service unit file:
+```
+[Unit]
+Description = Kodi Media Center
+
+# if you don't need the MySQL DB backend, this should be sufficient
+After = systemd-user-sessions.service network.target sound.target
+
+# if you need the MySQL DB backend, use this block instead of the previous
+# After = systemd-user-sessions.service network.target sound.target mysql.service
+# Wants = mysql.service
+
+[Service]
+User = kodi
+Group = kodi
+Type = simple
+ExecStart = /usr/bin/kodi-standalone
+Restart = always
+RestartSec = 15
+
+[Install]
+WantedBy = multi-user.target
+```
+
+
+To install, enable and run the service:
+```
+systemctl daemon-reload
+systemctl enable kodi.service
+systemctl start kodi.service
+```
+The kodi user was created witht the following commands:
+```
+adduser --disabled-password --gecos "User to run Kodi Media Center" kodi
+adduser kodi audio
+adduser kodi video
+adduser kodi plugdev
+adduser kodi input
+```
+
 ## Credits
 For inspiration, and most importantly, the headless patches without which none of this would have been possible. 
 
