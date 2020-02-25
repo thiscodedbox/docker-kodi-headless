@@ -55,12 +55,7 @@ it is compiled with this build, but you will need to enable it, if required, in 
 
 ## Autostart Kodi
 
-Per a comment I googled from  [RigacciOrg](https://github.com/RigacciOrg):
-
-Hi,
-As far as I can understand, Debian Jessie and Debian Stretch (and the derivated Raspbian ones) use the new init system systemd, not the old one sysvInit. So the use of the start/stop script /etc/init.d/kodi and relative /etc/default/kodi configuration file, should be discouraged.
-We should instead create a systemd unit file. I ended with this functional solution, running on 2017-11-29-raspbian-stretch-lite. I did not install the xerver.xorg system, the kodi-standalone program is run by the kodi user, which I created.
-This is the /etc/systemd/system/kodi.service unit file:
+Per [RigacciOrg](https://github.com/RigacciOrg) in a comment, create this /etc/systemd/system/kodi.service unit file:
 ```
 [Unit]
 Description = Kodi Media Center
@@ -107,6 +102,7 @@ For inspiration, and most importantly, the headless patches without which none o
 + [sinopsysHK](https://github.com/sinopsysHK)
 + [wernerb](https://github.com/wernerb)
 + [linuxserver](https://github.com/linuxserver)
++ [RigacciOrg](https://github.com/RigacciOrg)
 
 Various other members of the xbmc/kodi community for advice.
 
